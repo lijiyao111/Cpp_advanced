@@ -1,5 +1,7 @@
 /*
 const used with function
+
+in const function, actually (*this) is const (the object itself)
 */
 
 #include <iostream>
@@ -24,6 +26,7 @@ public:
     void setName(string b){name=b;}
 
     // Non meaning to set the return value by const but without reference, e.g. const string getName()
+    // return by value is just a temporary copy
     const string& getName() {return name;}
 
     //const function
