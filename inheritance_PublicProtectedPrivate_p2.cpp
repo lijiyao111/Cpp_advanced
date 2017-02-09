@@ -21,8 +21,8 @@ public:
 };
 
 // Private Inheritance
-// Private inheritance can access Ring protected members, but Composition cannot
-// and overriding virtual function is much easier in Private inheritance
+// Private inheritance can access Ring protected members, but Composition cannot.
+// Overriding virtual function is much easier in Private inheritance
 class Dog2: private Ring{
 public:
     using Ring::tinkle;
