@@ -16,15 +16,27 @@ public:
     Dog(string color){pCollar=new Collar(color);}
     ~Dog(){delete pCollar;}
     Dog& operator=(const Dog& rhs){
-/* Solution 1
-        if (this == &rhs) return *this;
-*/
+/* Wrong  // if self assigenment, bad
         delete pCollar;  // If self assignment, this is very unsafe
-        cout<<rhs.pCollar->color<<endl;
         pCollar=new Collar(*rhs.pCollar);
         return *this;
+*/
+/* Solution 1
+*/
+        if (this == &rhs) return *this;
+
+        Collar * pOrigCollar = pCollar;
+        pCollar=new Collar(*rhs.pCollar);
+        delete pOrigCollar;  // delete after the new is successful
+        return *this;
 /* Solution 2
-        *pCollar=*rhs.pCollar;
+
+        *pCollar=*rhs.pCollar;  // If self assign, copy itself
+        return *this;
+*/
+/* Solution 3
+        Dog tmp(rhs); // Assume the copy constructor is deep copy
+        swap(pCollar, tmp.pCollar);
         return *this;
 */
     }
